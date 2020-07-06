@@ -5,7 +5,7 @@ export default function Detail({ route }) {
   const { data } = route.params;
   return (
     <View style={styles.container}>
-      <Text>{JSON.stringify(data)}</Text>
+      <Text style={styles.data}>{JSON.stringify(data)}</Text>
     </View>
   );
 }
@@ -16,5 +16,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  data: {
+    marginTop: 8,
   },
 });

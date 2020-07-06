@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, ScrollView, View } from "react-native";
+import {
+  StyleSheet,
+  SafeAreaView,
+  View,
+  Text,
+  ActivityIndicator,
+} from "react-native";
 import Axios from "axios";
 import { FlatList } from "react-native-gesture-handler";
 import Item from "../components/Item";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Home({ navigation }) {
   const [pageCount, setPageCount] = useState(0);
   const [posts, setPosts] = useState(null);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     Axios.get(
       "https://hn.algolia.com/api/v1/search_by_date?tags=story&page=0"
     ).then((resp) => {
       setPosts(resp.data.hits);
-      console.log(resp.data.hits, "Priya");
     });
 
     const interval = setInterval(() => {
@@ -28,9 +33,12 @@ export default function Home({ navigation }) {
 
   useEffect(() => {
     if (pageCount > 0) {
+      setLoading(true);
       Axios.get(
         `https://hn.algolia.com/api/v1/search_by_date?tags=story&page=${pageCount}`
-      ).then((resp) => setPosts([...posts, ...resp.data.hits]));
+      ).then((resp) => {
+        setPosts([...posts, ...resp.data.hits]);
+      });
     }
   }, [pageCount]);
 
@@ -40,15 +48,9 @@ export default function Home({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View styles={styles.row}>
-        <Text style={styles.col}>Title</Text>
-        <Text styles={styles.row}>URL</Text>
-        <Text styles={styles.row}>created_at</Text>
-        <Text styles={styles.row}>author</Text>
-      </View>
       <FlatList
         data={posts}
-        renderItem={(item) => (
+        renderItem={({ item }) => (
           <Item
             title={item.title}
             URL={item.url}
@@ -58,9 +60,10 @@ export default function Home({ navigation }) {
             data={item}
           />
         )}
-        keyExtractor={(item) => item.created_at_i}
+        keyExtractor={(item) => item.objectID}
         onEndReached={getUpdatedData}
       />
+      {isLoading && <ActivityIndicator />}
     </SafeAreaView>
   );
 }
@@ -68,20 +71,8 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#eee",
     alignItems: "center",
     justifyContent: "center",
-  },
-  row: {
-    width: "100%",
-    flexDirection: "row",
-    borderBottomColor: "blue",
-    borderBottomWidth: 1,
-  },
-  col: {
-    width: "25%",
-    padding: 4,
-    borderLeftColor: "blue",
-    borderLeftWidth: 1,
   },
 });

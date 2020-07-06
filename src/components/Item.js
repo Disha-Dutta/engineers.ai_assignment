@@ -16,10 +16,10 @@ export default function Item({
       onPress={() => navigation.navigate("Detail", { data })}
     >
       <View style={styles.row}>
-        <Text>{title}</Text>
-        <Text>{URL}</Text>
-        <Text>{created_at}</Text>
-        <Text>{author}</Text>
+        <Text style={styles.col}>{title}</Text>
+        <Text style={styles.col}>{URL}</Text>
+        <Text style={styles.col}>{created_at}</Text>
+        <Text style={styles.col}>{author}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -35,13 +35,13 @@ const styles = StyleSheet.create({
   row: {
     width: "100%",
     flexDirection: "row",
-    borderBottomColor: "blue",
+    borderBottomColor: "gray",
     borderBottomWidth: 1,
   },
   col: {
     width: "25%",
     padding: 4,
-    borderLeftColor: "blue",
+    borderLeftColor: "gray",
     borderLeftWidth: 1,
   },
 });
