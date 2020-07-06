@@ -13,9 +13,31 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{ title: "Posts" }}
+          options={{
+            title: "Posts",
+            headerStyle: {
+              backgroundColor: "#f4511e",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+              alignSelf: "center",
+            },
+          }}
         />
-        <Stack.Screen name="Detail" component={Detail} />
+        <Stack.Screen
+          name="Detail"
+          component={Detail}
+          options={{
+            headerStyle: {
+              backgroundColor: "#f4511e",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

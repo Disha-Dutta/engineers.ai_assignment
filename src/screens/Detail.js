@@ -13,11 +13,12 @@ export default function Detail({ route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
+    backgroundColor: "#eee",
     justifyContent: "center",
   },
   data: {
-    marginTop: 8,
+    borderColor: "gray",
+    borderWidth: 1,
+    backgroundColor: "#fff",
   },
 });
