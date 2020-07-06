@@ -1,12 +1,11 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-export default function Detail() {
+export default function Detail({ route }) {
+  const { data } = route.params;
   return (
     <View style={styles.container}>
-      <Text>Detail screen</Text>
-      <StatusBar style="auto" />
+      <Text>{JSON.stringify(data)}</Text>
     </View>
   );
 }
