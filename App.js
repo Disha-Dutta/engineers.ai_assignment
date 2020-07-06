@@ -16,7 +16,7 @@ export default function App() {
           options={{
             title: "Posts",
             headerStyle: {
-              backgroundColor: "#f4511e",
+              backgroundColor: "#3264a8",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {
@@ -30,7 +30,7 @@ export default function App() {
           component={Detail}
           options={{
             headerStyle: {
-              backgroundColor: "#f4511e",
+              backgroundColor: "#3264a8",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {
