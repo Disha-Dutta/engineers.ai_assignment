@@ -2,7 +2,7 @@
 
 To run this project, run the below command:
 
-> npm install (or yarn install)
+`npm install (or yarn install)`
 
 For android run
 `npm run android`
